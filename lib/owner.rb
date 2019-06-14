@@ -57,13 +57,14 @@ class Owner
     fish.mood = "happy"}
   end
 
+
   def sell_pets
-    @@pets.each do |pet, every|
-      every.map do|pet|
-        pet.mood = "nervous"
-        end
-        every.clear
+    pets.each do |pet, arr|
+      arr.map do |pet|
+        pet.mood = 'nervous'
       end
+      arr.clear
+    end
   end
 
   def list_pets
