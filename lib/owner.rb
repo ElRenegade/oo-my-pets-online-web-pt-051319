@@ -1,72 +1,67 @@
-class Owner
-  attr_reader :species
-  attr_accessor :name, :pets, :fish, :dog, :cat
+attr_accessor :pets, :name
+attr_reader :species
 
-  @@all = []
-  @@pets = {:fishes => [], :dogs => [], :cats => []}
+@@all = []
 
-  def initialize(species)
-    @species = species
-    @name = name
-    @@all << self
+def initialize(species)
+  @species = species
+  @@all << self
+  @pets = { :fishes => [], :dogs => [], :cats => [] }
+end
+
+def self.all
+  @@all
+end
+
+def self.reset_all
+  @@all.clear
+end
+
+def self.count 
+  @@all.size
+end
+
+def say_species
+  "I am a #{species}."
+end
+
+def buy_fish(name)
+  fish = Fish.new(name)
+  pets[:fishes] << fish
+end
+
+def buy_cat(name)
+  cat = Cat.new(name)
+  pets[:cats] << cat
+end
+
+def buy_dog(name)
+  dog = Dog.new(name)
+  pets[:dogs] << dog
+end
+
+def walk_dogs
+  pets[:dogs].map {|dog| dog.mood = "happy"}
+
+end
+
+def play_with_cats
+  pets[:cats].map {|cat| cat.mood = "happy"}
+end
+
+def feed_fish
+  pets[:fishes].map {|fish| fish.mood = "happy"}
+end
+
+def sell_pets
+  pets.each do |type, pets|
+    pets.map {|pet| pet.mood = "nervous"}
   end
+  pets.clear
+end
 
-  def self.all
-    @@all
-  end
-
-  def self.count
-    @@all.length
-  end
-
-  def self.reset_all
-    @@all.clear
-  end
-
-  def say_species
-    "I am a #{@species}."
-  end
-
-  def pets
-    @@pets
-  end
-
-  def buy_fish(fish)
-    @@pets[:fishes] << Fish.new(fish)
-  end
-
-  def buy_cat(cat)
-    @@pets[:cats] << Cat.new(cat)
-  end
-
-  def buy_dog(dog)
-    @@pets[:dogs] << Dog.new(dog)
-  end
-
-  def walk_dogs
-    @@pets[:dogs].each do |dog|
-      dog.mood = 'happy'
-    end
-  end
-
-  def play_with_cats
-    @@pets[:cats].each do |cat|
-      cat.mood = 'happy'
-    end
-  end
-
-  def feed_fish
-    @@pets[:fishes].each do |fish|
-      fish.mood = 'happy'
-    end
-  end
-
-  def list_pets
-    "I have #{pets[:fishes].size} fish, #{pets[:dogs].size} dog(s), and #{pets[:cats].size} cat(s)."
-  end
-
-  def sell_pets
-
-  end
+def list_pets
+  "I have #{pets[:fishes].size} fish, #{pets[:dogs].size} dog(s), and #{pets[:cats].size} cat(s)."
+end
 
 end
