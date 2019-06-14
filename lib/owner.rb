@@ -62,6 +62,7 @@ class Owner
       every.map{|pet|
         pet.mood = "nervous"
       }
+      every.clear
     }
   end
 
