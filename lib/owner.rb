@@ -70,7 +70,7 @@ class Owner
       type.map do |pet|
         pet.mood = 'nervous'
       end
-      type.clear
+      pet.clear
     end
   end
 
