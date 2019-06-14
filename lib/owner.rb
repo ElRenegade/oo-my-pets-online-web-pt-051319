@@ -8,5 +8,5 @@ class Owner
     type.dup.freeze
   end
 
-  
+
 end
