@@ -58,12 +58,12 @@ class Owner
   end
 
   def sell_pets
-    pets.each { |pet, every|
-      every.map{|pet|
+    pets.each do |pet, every|
+      every.map do|pet|
         pet.mood = "nervous"
-      }
-      every.clear
-    }
+        end
+        every.clear
+      end    
   end
 
   def list_pets
