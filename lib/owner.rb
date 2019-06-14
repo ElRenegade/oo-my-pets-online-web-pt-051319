@@ -1,8 +1,9 @@
 class Owner
   attr_reader :species
   attr_accessor :name, :pets, :fish, :dog, :cat
-  @@pets = {fishes:[], dogs:[], cats:[]}
+
   @@all = []
+  @@pets = {:fishes => [], :dogs => [], :cats => []}
 
   def initialize(species)
     @species = species
@@ -23,7 +24,7 @@ class Owner
   end
 
   def say_species
-    "I am a #{species}."
+    "I am a #{@species}."
   end
 
   def pets
@@ -31,45 +32,46 @@ class Owner
   end
 
   def buy_fish(fish)
-    fish = Fish.new(name)
-    @@pets[:fishes] << fish
+    @@pets[:fishes] << Fish.new(fish)
   end
 
   def buy_cat(cat)
-    cat = Cat.new(name)
-    @@pets[:cats] << cat
+    @@pets[:cats] << Cat.new(cat)
   end
 
   def buy_dog(dog)
-    dog = Dog.new(name)
-    @@pets[:dogs] << dog
+    @@pets[:dogs] << Dog.new(dog)
   end
 
   def walk_dogs
-    @@pets[:dogs].each{|dog|
-    dog.mood = "happy"}
+    @@pets[:dogs].each do |dog|
+      dog.mood = 'happy'
+    end
   end
 
   def play_with_cats
-    @@pets[:cats].each{|cat|
-    cat.mood = "happy"}
+    @@pets[:cats].each do |cat|
+      cat.mood = 'happy'
+    end
   end
 
   def feed_fish
-    @@pets[:fishes].each{|fish|
-    fish.mood = "happy"}
-  end
-
-
-  def sell_pets
-    pets.each do |type, pets|
-      pets.map do |pet| pet.mood = "nervous"
-      end
+    @@pets[:fishes].each do |fish|
+      fish.mood = 'happy'
     end
-    pets.clear
   end
 
   def list_pets
     "I have #{pets[:fishes].length} fish, #{pets[:dogs].length} dog(s), and #{pets[:cats].length} cat(s)."
   end
+
+  def sell_pets
+    pets.each do |pet, arr|
+      arr.map do |pet|
+        pet.mood = 'nervous'
+      end
+      arr.clear
+    end
+  end
+
 end
